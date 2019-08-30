@@ -8,8 +8,11 @@ def main():
     print(f'type: {type(image)}')  # np.ndarray
     print(f'shage: {image.shape}')
     print(f'size: {image.size / (1 << 20):.2f} MB')
-    mask = image < 87
-    image[mask] = 255
+    image = image[:,:,0]
+    mask = image > 1 << 7
+    image[mask] = (1 << 8) - 1
+    image[~mask] = 0
+    # image[100:200, 100:200, :] = 0
     plt.imshow(image, cmap='gray')
 
 
