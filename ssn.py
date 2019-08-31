@@ -14,7 +14,8 @@ def disassemble():
         layer = 1 << i
         mask = image >= layer
         image[mask] -= layer
-        plt.imsave(f'layer{layer}.png', mask.astype(dtype=uint8)*uint8(255))
+        mask = mask.astype(dtype=uint8)*uint8(255)
+        plt.imsave(f'layer{layer}.png', mask)
         print(f'layer{layer} saved')
 
 
@@ -36,7 +37,7 @@ def assemble():
 
 
 def main():
-    # disassemble()
+    disassemble()
     assemble()
 
 
